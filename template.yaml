@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  mastraonaws
+
+  Sample SAM Template to deploy Mastra agent on AWS API Gateway
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  MastraFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: mastra/
+      Handler: app.lambdaHandler
+      Runtime: nodejs20.x
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          OPENAI_API_KEY: !Ref LLMProviderApikey 
+      Events:
+        MastraApi:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /agent
+            Method: get
+    Metadata: # Manage esbuild properties
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "es2020"
+        Sourcemap: true
+        EntryPoints: 
+        - app.ts
+
+Parameters:
+  LLMProviderApikey:
+    Type: String
+    Description: LLM Provider API key
+    Default: insert-your-api-key      
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  MastraAgentApi:
+    Description: "API Gateway endpoint URL for Prod stage for Mastra function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/agent/"
+  MastraFunction:
+    Description: "Mastra Lambda Function ARN"
+    Value: !GetAtt MastraFunction.Arn
+  MastraFunctionIamRole:
+    Description: "Implicit IAM Role created for Mastra function"
+    Value: !GetAtt MastraFunctionRole.Arn
