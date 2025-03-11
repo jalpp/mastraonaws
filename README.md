@@ -2,10 +2,16 @@
 
 This is a sample application to run Mastra Agents behind API gateway on AWS
 
+currently this will deploy a weather agent behind an API Gateway on AWS.
+
 - mastra/mastra - Code for the Mastra Agent Lambda function written in TypeScript.
 - events - Invocation events that you can use to invoke the function.
 - mastra/tests - Unit tests for the application code. 
 - template.yaml - A template that defines the application's AWS resources.
+
+## Diagram
+
+![image](https://github.com/jalpp/mastraonaws/blob/main/view/arch-diagram.png?raw=true)
 
 The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
 
@@ -23,6 +29,7 @@ The AWS Toolkit is an open source plug-in for popular IDEs that uses the SAM CLI
 * [DataGrip](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
 * [VS Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html)
 * [Visual Studio](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/welcome.html)
+
 
 ## Deploy the sample application
 
