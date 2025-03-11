@@ -48,6 +48,29 @@ sam build
 sam deploy --guided
 ```
 
+## Request/Response
+
+client sends query in body 
+
+```
+{
+  "query": "what is the weather in New York?"
+}
+
+```
+
+Response
+
+```
+{
+  "message": " The weather in New York is ..."
+}
+```
+
+## Cors
+ if used for frontend application, you must configure cors on API Gateway, and the proxy reponse
+
+
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
 
 * **Stack Name**: The name of the stack to deploy to CloudFormation. This should be unique to your account and region, and a good starting point would be something matching your project name.
@@ -74,7 +97,7 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-mastraonaws$ sam local invoke HelloWorldFunction --event events/event.json
+mastraonaws$ sam local invoke MastraFunction --event events/event.json
 ```
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
