@@ -15,7 +15,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^1.2.1",
     "@mastra/core": "^0.5.0-alpha.10",
-    "esbuild": "^0.14.14",
+    "esbuild": "^0.25.0",
     "mastra": "^0.2.8",
     "zod": "^3.24.2"
   },
