@@ -1,6 +1,6 @@
 # mastraonaws
 
-This is a sample application to run Mastra Agents behind API gateway on AWS
+This is a sample application to run [Mastra](https://mastra.ai/docs) Agents behind API gateway on AWS
 
 currently this will deploy a weather agent behind an API Gateway on AWS.
 
@@ -70,7 +70,7 @@ Response
 ## Cors
  if used for frontend application, you must configure cors on API Gateway, and the proxy reponse
 
-
+## Deploy Params
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
 
 * **Stack Name**: The name of the stack to deploy to CloudFormation. This should be unique to your account and region, and a good starting point would be something matching your project name.
